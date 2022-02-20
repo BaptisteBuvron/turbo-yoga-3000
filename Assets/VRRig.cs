@@ -20,6 +20,7 @@ public class VRMap
 
 public class VRRig : MonoBehaviour
 {
+
     public VRMap head;
     public VRMap leftHand;
     public VRMap rightHand;
