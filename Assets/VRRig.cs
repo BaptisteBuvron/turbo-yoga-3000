@@ -21,7 +21,7 @@ public class VRMap
 public class VRRig : MonoBehaviour
 {
 
-    public VRMap head;
+    // public VRMap head;
     public VRMap leftHand;
     public VRMap rightHand;
     public Transform headConstraint;
@@ -38,7 +38,7 @@ public class VRRig : MonoBehaviour
     {
         transform.position = headConstraint.position + headBodyOffest;
         transform.forward = Vector3.ProjectOnPlane(headConstraint.up, Vector3.up).normalized;
-        head.Map();
+        // head.Map();
         leftHand.Map();
         rightHand.Map();
     }
