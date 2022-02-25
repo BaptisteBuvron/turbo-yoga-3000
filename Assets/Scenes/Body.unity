@@ -1820,7 +1820,7 @@ MonoBehaviour:
   head:
     vrTarget: {fileID: 1530624484}
     rigTarget: {fileID: 170360558}
-    trackingPositionOffset: {x: 0, y: 0, z: -0.27}
+    trackingPositionOffset: {x: 0, y: 0, z: 0}
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   leftHand:
     vrTarget: {fileID: 1964965188}
