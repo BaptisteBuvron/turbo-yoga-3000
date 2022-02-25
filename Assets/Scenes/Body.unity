@@ -139,6 +139,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3305581528943328905, guid: 96c1702b56fa5a7488457a6a515ac58e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3305581528943328969, guid: 96c1702b56fa5a7488457a6a515ac58e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3305581528943329009, guid: 96c1702b56fa5a7488457a6a515ac58e, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1423,12 +1431,12 @@ MonoBehaviour:
       m_Name: Position
       m_Type: 0
       m_ExpectedControlType: Vector3
-      m_Id: 
+      m_Id: 89f07eec-e872-41f6-a5e5-d29cac3da59e
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
       - m_Name: 
-        m_Id: 
+        m_Id: 58bd81bd-4bc1-41e8-83fd-90ba2bf9b1cf
         m_Path: <XRHMD>/centerEyePosition
         m_Interactions: 
         m_Processors: 
@@ -1443,12 +1451,12 @@ MonoBehaviour:
       m_Name: Rotation
       m_Type: 0
       m_ExpectedControlType: Quaternion
-      m_Id: 
+      m_Id: c73fd14f-605c-49c2-b50d-a4875e5931f6
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
       - m_Name: 
-        m_Id: 
+        m_Id: 805a1c8a-362b-4590-aff0-48d170d1aafe
         m_Path: <XRHMD>/centerEyeRotation
         m_Interactions: 
         m_Processors: 
@@ -1559,7 +1567,7 @@ MonoBehaviour:
   m_Camera: {fileID: 637286140}
   m_OriginBaseGameObject: {fileID: 645460149}
   m_CameraFloorOffsetObject: {fileID: 293630840}
-  m_RequestedTrackingOriginMode: 0
+  m_RequestedTrackingOriginMode: 2
   m_CameraYOffset: 1.1176
 --- !u!4 &645460151
 Transform:
@@ -1569,7 +1577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645460149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.299941, y: 1.3283153, z: -3.4677799}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 293630841}
@@ -2724,18 +2732,18 @@ MonoBehaviour:
   head:
     vrTarget: {fileID: 637286137}
     rigTarget: {fileID: 170360558}
-    trackingPositionOffset: {x: 0, y: 0, z: 0}
+    trackingPositionOffset: {x: 0, y: -0.16, z: 0}
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   leftHand:
     vrTarget: {fileID: 555062768}
     rigTarget: {fileID: 757751895}
     trackingPositionOffset: {x: 0, y: 0, z: 0}
-    trackingRotationOffset: {x: 0, y: 0, z: 0}
+    trackingRotationOffset: {x: -21, y: 0, z: 0}
   rightHand:
     vrTarget: {fileID: 1066863113}
     rigTarget: {fileID: 1101548909}
     trackingPositionOffset: {x: 0, y: 0, z: 0}
-    trackingRotationOffset: {x: 0, y: 0, z: 0}
+    trackingRotationOffset: {x: -124, y: 160, z: -345}
   headConstraint: {fileID: 170360558}
   headBodyOffest: {x: 0, y: 0, z: 0}
 --- !u!4 &1582355907 stripped
