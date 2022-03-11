@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Trainer : MonoBehaviour
 {
@@ -8,25 +9,52 @@ public class Trainer : MonoBehaviour
   bool playing = false;
   string lastAnimation = "Null";
   // Start is called before the first frame update
+
+  private InputDevice targetDevice;
+
   void Start()
   {
     animator = GetComponent<Animator>();
+
+    List<InputDevice> devices = new List<InputDevice>();
+    InputDeviceCharacteristics requiredCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
+    InputDevices.GetDevicesWithCharacteristics(requiredCharacteristics, devices);
+
+    if (devices.Count > 0)
+    {
+      targetDevice = devices[0];
+    }
+    else
+    {
+      Debug.Log("No devices found");
+    }
+
   }
 
   // Update is called once per frame
   void Update()
   {
-    if (Input.GetKeyDown(KeyCode.K) && !playing)
+    // if (Input.GetKeyDown(KeyCode.K) && !playing)
+    // {
+    //   // StartAnimation(1, "BrasParDessusTete");
+    //   TransitionToAnimation("BrasParDessusTete");
+    // }
+    // else if (Input.GetKeyDown(KeyCode.L) && !playing)
+    // {
+    //   // StartAnimation(-1, "BrasParDessusTete");
+    //   TransitionToAnimation("T-pose");
+    // }
+
+    targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPrimaryButtonPressed);
+    targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool isSecondaryButtonPressed);
+    if (isPrimaryButtonPressed && !playing)
     {
-      // StartAnimation(1, "BrasParDessusTete");
       TransitionToAnimation("BrasParDessusTete");
     }
-    else if (Input.GetKeyDown(KeyCode.L) && !playing)
+    else if (isSecondaryButtonPressed && !playing)
     {
-      // StartAnimation(-1, "BrasParDessusTete");
       TransitionToAnimation("T-pose");
     }
-    // Debug.Log(playing);
   }
 
   public void TransitionToAnimation(string nomAnimation)
