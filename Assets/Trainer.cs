@@ -102,7 +102,8 @@ public class Trainer : MonoBehaviour
         animator.SetFloat("forward", -1);
         animator.Play(lastAnimation);
         Debug.Log("Reversing " + lastAnimation);
-        yield return new WaitForSeconds(getAnimationDuration(lastAnimation) + 1);
+
+        yield return new WaitForSeconds(getAnimationDuration(lastAnimation) + 2);
         Debug.Log("Finished Reversing " + lastAnimation);
         StartCoroutine(StartAnimationAndWait(nomProchaineAnimation));
 
@@ -115,7 +116,7 @@ public class Trainer : MonoBehaviour
         animator.SetFloat("forward", 1);
         animator.Play(animationName);
 
-        yield return new WaitForSeconds(getAnimationDuration(animationName));
+        yield return new WaitForSeconds(getAnimationDuration(animationName) + 1);
         Debug.Log("animation finished");
         animationMethodAlreadyCalled = false;
 
