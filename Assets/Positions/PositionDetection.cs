@@ -26,9 +26,9 @@ public class PositionDetection : MonoBehaviour
     void Update()
     {
 
-        Debug.Log("Main gauche : " + getLeftHandPosition());
+        /*Debug.Log("Main gauche : " + getLeftHandPosition());
         Debug.Log("Main droite : " + getRightHandPosition());
-        Debug.Log("Tête : " + getHeadPosition());
+        Debug.Log("Tête : " + getHeadPosition());*/
 
 
         Position2 pose;
@@ -44,7 +44,7 @@ public class PositionDetection : MonoBehaviour
 
             case "T-pose":
 
-                pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(2, 8.5f), new Vector2(7, 8.5f));
+                pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(2, 7f), new Vector2(7, 7f));
                 Debug.Log("Position : T-Pose");
 
                 break;
