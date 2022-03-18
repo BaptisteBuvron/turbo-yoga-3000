@@ -6,7 +6,7 @@ namespace Assets.Positions
     public static class PositionMatcher
     {
 
-        public static float getPositionMatch(Position2 pose, Position2 playerPosition)
+        public static float getPositionMatch(Position2 pose, Position2 playerPosition, float bodyHeight, float armLength)
         {
 
 
@@ -28,20 +28,17 @@ namespace Assets.Positions
 
             float percentage, percentageHead, percentageLeftHand, percentageRightHand;
 
-            percentageHead = (Mathf.Abs(playerPositionNormalized.headPosition.x-pose.headPosition.x)*100/9);
-            percentageHead += (Mathf.Abs(playerPositionNormalized.headPosition.y - pose.headPosition.y) * 100 / 9);
-            percentageHead += (Mathf.Abs(playerPositionNormalized.headPosition.y - pose.headPosition.y) * 100 / 9);
-            percentageHead /= 3;
+            percentageHead = (Mathf.Abs(playerPositionNormalized.headPosition.x- (pose.headPosition.x * armLength / 9))* 100);
+            percentageHead += (Mathf.Abs(playerPositionNormalized.headPosition.y - (pose.headPosition.y*bodyHeight/9)) * 100);
+            percentageHead /= 2;
 
-            percentageLeftHand = (Mathf.Abs(playerPositionNormalized.leftHandPosition.x - pose.leftHandPosition.x) * 100 / 9);
-            percentageLeftHand += (Mathf.Abs(playerPositionNormalized.leftHandPosition.y - pose.leftHandPosition.y) * 100 / 9);
-            percentageLeftHand += (Mathf.Abs(playerPositionNormalized.leftHandPosition.y - pose.leftHandPosition.y) * 100 / 9);
-            percentageLeftHand /= 3;
+            percentageLeftHand = (Mathf.Abs(playerPositionNormalized.leftHandPosition.x - (pose.leftHandPosition.x * armLength / 9)) * 100);
+            percentageLeftHand += (Mathf.Abs(playerPositionNormalized.leftHandPosition.y - (pose.leftHandPosition.y*bodyHeight/9)) * 100);
+            percentageLeftHand /= 2;
 
-            percentageRightHand = (Mathf.Abs(playerPositionNormalized.rightHandPosition.x - pose.rightHandPosition.x) * 100 / 9);
-            percentageRightHand += (Mathf.Abs(playerPositionNormalized.rightHandPosition.y - pose.rightHandPosition.y) * 100 / 9);
-            percentageRightHand += (Mathf.Abs(playerPositionNormalized.rightHandPosition.y - pose.rightHandPosition.y) * 100 / 9);
-            percentageRightHand /= 3;
+            percentageRightHand = (Mathf.Abs(playerPositionNormalized.rightHandPosition.x - (pose.rightHandPosition.x * armLength / 9)) * 100);
+            percentageRightHand += (Mathf.Abs(playerPositionNormalized.rightHandPosition.y - (pose.rightHandPosition.y * bodyHeight / 9)) * 100);
+            percentageRightHand /= 2;
 
             percentage = percentageHead + percentageLeftHand + percentageRightHand;
             percentage /= 3;

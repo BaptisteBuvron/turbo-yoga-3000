@@ -63,7 +63,7 @@ public class PositionDetection : MonoBehaviour
         //Debug.Log("Calibration : Tête" + calibration.headPosition + " Main gauche" + calibration.leftHandPosition + " Main droite" + calibration.rightHandPosition);
         Debug.Log("Position du joueur : Tête" + playerPosition.headPosition + " Main gauche" + playerPosition.leftHandPosition + " Main droite" + playerPosition.rightHandPosition);
 
-        Debug.Log("Correspondance des positions : " + PositionMatcher.getPositionMatch(pose, playerPosition) + "%");
+        Debug.Log("Correspondance des positions : " + PositionMatcher.getPositionMatch(pose, playerPosition, 1.68f, 0.8f) + "%");
 
     }
 
