@@ -7,6 +7,7 @@ public class Trainer : MonoBehaviour
 {
     Animator animator;
     bool playing = false;
+
     string lastAnimation = "Null";
     // Start is called before the first frame update
 
@@ -22,11 +23,11 @@ public class Trainer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!targetFound)
         {
             List<InputDevice> devices = new List<InputDevice>();
-            InputDeviceCharacteristics requiredCharacteristics = InputDeviceCharacteristics.Controller | InputDeviceCharacteristics.Right;
+            InputDeviceCharacteristics requiredCharacteristics =
+                InputDeviceCharacteristics.Controller | InputDeviceCharacteristics.Right;
             InputDevices.GetDevicesWithCharacteristics(requiredCharacteristics, devices);
 
             if (devices.Count > 0)
@@ -62,64 +63,53 @@ public class Trainer : MonoBehaviour
 
             if (lastAnimation != "Null")
             {
-                StartCoroutine(ReverseLastAnimation(nomAnimation));
+                StartCoroutine(ReverseAndPlayNextAnimation(nomAnimation));
+                lastAnimation = nomAnimation;
             }
             else
             {
-                StartCoroutine(StartAnimationAndWait(nomAnimation));
+                StartCoroutine(PlayAnimation(nomAnimation));
+                lastAnimation = nomAnimation;
             }
         }
-        else { return; }
+        else
+        {
+            return;
+        }
     }
 
-    //   public void StartAnimation(int multiplier, string nomAnimation)
-    //   {
-    //     lastAnimation = multiplier == -1 ? "Null" : nomAnimation;
-    //     animator.SetFloat("forward", multiplier);
-    //     animator.Play(nomAnimation);
-    //   }
+    public IEnumerator PlayAnimation(string animationName)
+    {
+        Debug.Log("Début animation " + animationName);
+        animator.Play(animationName);
+        yield return new WaitForSecondsRealtime(getAnimationDuration(animationName) + 2);
+        Debug.Log("fin animation " + animationName);
+        animationMethodAlreadyCalled = false;
+    }
+
+    public IEnumerator ReverseAndWait()
+    {
+        Debug.Log("Début reverse" + lastAnimation);
+        animator.SetFloat("forward", -1);
+        animator.Play(lastAnimation);
+        yield return new WaitForSeconds(getAnimationDuration(lastAnimation)+5);
+        animator.SetFloat("forward", 1);
+        Debug.Log("Fin reverse" + lastAnimation);
+    }
+
+    public IEnumerator ReverseAndPlayNextAnimation(string nextAnimationName)
+    {
+        Debug.Log("Début fonction ReverseandPlayNextAnimation");
+        yield return ReverseAndWait();
+        //yield return new WaitForSeconds(1);
+        yield return PlayAnimation(nextAnimationName);
+    }
+
 
     public void TogglePlaying(int fin)
     {
         playing = !playing;
-        Debug.Log("playing " + playing);
-    }
-
-    //   IEnumerator Wait(float duration, string nextAnimation = "Null")
-    //   {
-    //     //This is a coroutine
-    //     Debug.Log("Start Wait() function. The time is: " + Time.time);
-    //     Debug.Log("Float duration = " + duration);
-    //     yield return new WaitForSeconds(duration);   //Wait
-    //     Debug.Log("End Wait() function and the time is: " + Time.time);
-    //     Debug.Log("Now playing animation " + nextAnimation);
-    //     StartAnimation(1, nextAnimation);
-    //     animationMethodAlreadyCalled = false;
-    //   }
-
-    IEnumerator ReverseLastAnimation(string nomProchaineAnimation)
-    {
-        animator.SetFloat("forward", -1);
-        animator.Play(lastAnimation);
-        Debug.Log("Reversing " + lastAnimation);
-
-        yield return new WaitForSeconds(getAnimationDuration(lastAnimation) + 2);
-        Debug.Log("Finished Reversing " + lastAnimation);
-        StartCoroutine(StartAnimationAndWait(nomProchaineAnimation));
-
-    }
-
-    IEnumerator StartAnimationAndWait(string animationName)
-    {
-        Debug.Log("animation starting");
-        lastAnimation = animationName;
-        animator.SetFloat("forward", 1);
-        animator.Play(animationName);
-
-        yield return new WaitForSeconds(getAnimationDuration(animationName) + 1);
-        Debug.Log("animation finished");
-        animationMethodAlreadyCalled = false;
-
+        Debug.Log("playing is now" + playing);
     }
 
     public float getAnimationDuration(string nomAnimation)
@@ -132,8 +122,8 @@ public class Trainer : MonoBehaviour
                 return clip.length;
             }
         }
+
         Debug.LogError("Animation " + nomAnimation + " not found");
         return 10;
     }
-
 }
