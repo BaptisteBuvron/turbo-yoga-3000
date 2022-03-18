@@ -38,16 +38,18 @@ public class PositionDetection : MonoBehaviour
             case "BrasParDessusTete":
 
                 pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(3, 10), new Vector2(6, 10));
+                Debug.Log("Position : Bras par dessus la tête");
 
                 break;
 
             case "T-pose":
 
                 pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(2, 8.5f), new Vector2(7, 8.5f));
-
+                Debug.Log("Position : T-Pose");
 
                 break;
             default:
+                Debug.Log("Position : Aucune");
                 return;
                 break;
         }
