@@ -15,6 +15,8 @@ public class Position2
         this.rightHandPosition = rightHandPosition;
     }
 
+    
+
 
 
 }
