@@ -1,9 +1,11 @@
 using Assets.Positions;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
@@ -13,12 +15,15 @@ public class PositionDetection : MonoBehaviour
     public XROrigin xrOrigin;
     public XRRayInteractor leftHand, rightHand;
 
+    public MonoBehaviour superText;
+    public TextMeshProUGUI percentageDisplay;
     // Start is called before the first frame update
     void Start()
     {
+        percentageDisplay.SetText("on start");
 
 
-        
+
     }
 
 
@@ -32,6 +37,7 @@ public class PositionDetection : MonoBehaviour
 
 
         Position2 pose;
+        percentageDisplay.SetText("is ok");
 
         switch (Trainer.lastAnimation)
         {
@@ -64,6 +70,8 @@ public class PositionDetection : MonoBehaviour
         Debug.Log("Position du joueur : Tête" + playerPosition.headPosition + " Main gauche" + playerPosition.leftHandPosition + " Main droite" + playerPosition.rightHandPosition);
 
         Debug.Log("Correspondance des positions : " + PositionMatcher.getPositionMatch(pose, playerPosition, 1.68f, 0.8f) + "%");
+
+        percentageDisplay.SetText(PositionMatcher.getPositionMatch(pose, playerPosition, 1.68f, 0.8f) + "% ");
 
     }
 
