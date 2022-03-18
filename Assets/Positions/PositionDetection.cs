@@ -30,7 +30,28 @@ public class PositionDetection : MonoBehaviour
         Debug.Log("Main droite : " + getRightHandPosition());
         Debug.Log("Tête : " + getHeadPosition());
 
-        Position2 pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(2, 4), new Vector2(7, 4));
+
+        Position2 pose;
+
+        switch (Trainer.lastAnimation)
+        {
+            case "BrasParDessusTete":
+
+                pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(3, 10), new Vector2(6, 10));
+
+                break;
+
+            case "T-pose":
+
+                pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(2, 8.5f), new Vector2(7, 8.5f));
+
+
+                break;
+            default:
+                return;
+                break;
+        }
+
 
         Position2 playerPosition = new Position2(new Vector2(getHeadPosition().x, getHeadPosition().y), new Vector2(getLeftHandPosition().x, getLeftHandPosition().y), new Vector2(getRightHandPosition().x, getRightHandPosition().y));
 
