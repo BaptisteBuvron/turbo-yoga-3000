@@ -8,7 +8,7 @@ public class Trainer : MonoBehaviour
     Animator animator;
     bool playing = false;
 
-    string lastAnimation = "Null";
+    public static string lastAnimation = "Null";
     // Start is called before the first frame update
 
     private InputDevice targetDevice;
