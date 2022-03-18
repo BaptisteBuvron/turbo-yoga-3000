@@ -23,6 +23,10 @@ public class MathingTest : MonoBehaviour
 
         Position2 calibration = new Position2(new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0));
 
-        Debug.Log(PositionMatcher.getPositionMatch(pose, playerPosition, calibration) + "%");
+        Debug.Log("Pose à reproduire : Tête"+pose.headPosition+" Main gauche"+pose.leftHandPosition+" Main droite"+pose.rightHandPosition);
+        Debug.Log("Calibration : Tête" + calibration.headPosition + " Main gauche" + calibration.leftHandPosition + " Main droite" + calibration.rightHandPosition);
+        Debug.Log("Position du joueur : Tête" + playerPosition.headPosition + " Main gauche" + playerPosition.leftHandPosition + " Main droite" + playerPosition.rightHandPosition);
+
+        Debug.Log("Correspondance des positions : "+PositionMatcher.getPositionMatch(pose, playerPosition, calibration) + "%");
     }
 }

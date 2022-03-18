@@ -5,8 +5,8 @@ using UnityEngine;
 public class Position2
 {
 
-    Vector2 headPosition;
-    Vector2 leftHandPosition, rightHandPosition;
+    public Vector2 headPosition;
+    public Vector2 leftHandPosition, rightHandPosition;
 
     public Position2(Vector2 headPosition, Vector2 leftHandPosition, Vector2 rightHandPosition)
     {
@@ -15,12 +15,14 @@ public class Position2
         this.rightHandPosition = rightHandPosition;
     }
 
+
+
 }
 public class Position3
 {
 
-    Vector3 headPosition;
-    Vector3 leftHandPosition, rightHandPosition;
+    public Vector3 headPosition;
+    public Vector3 leftHandPosition, rightHandPosition;
 
     public Position3(Vector3 headPosition, Vector3 leftHandPosition, Vector3 rightHandPosition)
     {

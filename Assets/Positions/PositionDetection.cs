@@ -26,7 +26,9 @@ public class PositionDetection : MonoBehaviour
 
         
 
-        Debug.Log(getLeftHandPosition());
+        Debug.Log("Main gauche : "+getLeftHandPosition());
+        Debug.Log("Main droite : " + getRightHandPosition());
+        Debug.Log("Tête : " + getHeadPosition());
 
     }
 
