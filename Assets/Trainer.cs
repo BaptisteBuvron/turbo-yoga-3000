@@ -5,7 +5,7 @@ using UnityEngine.XR;
 
 public class Trainer : MonoBehaviour
 {
-  Animator animator;
+  static Animator animator;
   bool playing = false;
 
   public static string lastAnimation = "Null";
@@ -18,7 +18,7 @@ public class Trainer : MonoBehaviour
   void Start()
   {
     animator = GetComponent<Animator>();
-    StartCoroutine(Wait());
+
   }
 
   // Update is called once per frame
@@ -47,35 +47,24 @@ public class Trainer : MonoBehaviour
     targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool isSecondaryButtonPressed);
     if (isPrimaryButtonPressed && !playing)
     {
-      TransitionToAnimation("BrasParDessusTete");
+      playAnimation(Animations.Tpose);
     }
     else if (isSecondaryButtonPressed && !playing)
     {
-      TransitionToAnimation("T-pose");
+      playAnimation(Animations.BrasParDessusTete);
+
     }
   }
 
-  IEnumerator Wait()
-   {
-     animator.SetInteger("id", _i % 3);
-     yield return new WaitForSeconds(5);   //Wait
-     ++_i;
-     yield return Wait();
-   }
- 
-   private int _i = 0;
-  public void TransitionToAnimation(string nomAnimation)
+  public static void playAnimation(Animations animation)
   {
-    /*
-    foreach (var animatorParameter in animator.parameters)
-    {
-      if (animatorParameter.type == AnimatorControllerParameterType.Bool)
-      {
-        animator.SetBool(animatorParameter.name, false);
-      }
-    }
-    */
-
-    //animator.SetBool(nomAnimation, true);
+    animator.SetInteger("id", ((int)animation));
   }
+}
+
+public enum Animations
+{
+  Tpose = 1,
+  BrasParDessusTete = 2,
+  Idle = 0
 }
