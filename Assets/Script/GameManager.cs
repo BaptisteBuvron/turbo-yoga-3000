@@ -11,9 +11,8 @@ public class GameManager : MonoBehaviour
     public GameState state;
     public TextMeshProUGUI callibrationText;
     private float callibrationTime = 0;
-    private InputDevice leftController;
-    private bool leftControllerConnected = false;
-    private bool isPrimaryLeftButtonPressed = false;
+    private bool callibrationInstruction = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,33 +26,46 @@ public class GameManager : MonoBehaviour
     switch (state)
         {
             case GameState.Callibrate:
-                if (!leftControllerConnected)    
+                if (callibrationTime == 0f)
                 {
-                    getLeftController();
+                    callibrationText.text = "Installez-vous debout et reproduisez la position du coach et restez stable pendant 5 secondes.\n Restez sur le bouton B Gauche pour débuter la callibration.";
+                    //TODO Coach T POSE
+                }
+                ControllerManager.leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPrimaryLeftButtonPressed);
+                if (isPrimaryLeftButtonPressed )
+                {
+                    if (callibrationInstruction)
+                    {
+                        callibrationText.text = "";
+                        callibrationInstruction = false;
+                    }
+                    else
+                    {
+                        updateTimer();
+                    }
                 }
                 else
                 {
-                    
-                    leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPrimaryLeftButtonPressed);
-                    if (isPrimaryLeftButtonPressed)
-                    {
-                        callibrationTime += Time.deltaTime;
-                        callibrationText.text = "Callibrating...\n" + callibrationTime.ToString("0.00");
-                        if (callibrationTime > 3)
-                        {
-                            callibrationText.text = "";
-                        }
-                    }
-                    
+                    callibrationTime = 0;
                 }
                 break;
         }
     }
 
-    private void getLeftController()
+    void updateTimer()
     {
-        leftController = ControllerManager.leftController;
+        Debug.Log("GameManager : Starting Callibration");
+        callibrationTime += Time.deltaTime;
+        callibrationText.text = "Callibrating...\n" + callibrationTime.ToString("0.00");
+        if (callibrationTime >= 3)
+        {
+            callibrationText.text = "Succès Début de la partie";
+            state = GameState.Playing;
+            
+
+        }
     }
+    
         
     
 }

@@ -11,7 +11,8 @@ namespace Script
         public static InputDevice rightController;
         private bool AlltargetFound = false;
         
-        private void Update()
+
+        void Update()
         {
             if (!AlltargetFound)
             {
@@ -30,7 +31,7 @@ namespace Script
                     leftController = devicesLeft[0];
                     rightController = devicesRight[0];
                     AlltargetFound = true;
-                    Debug.Log("All target found");
+                    Debug.Log(leftController);
                 }
                 else
                 {
