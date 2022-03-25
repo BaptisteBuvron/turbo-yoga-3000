@@ -65,16 +65,4 @@ public class Trainer : MonoBehaviour
 
     animator.SetBool(nomAnimation, true);
   }
-
-  public List<string> getAnimationsName()
-  {
-    AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
-    List<string> list = new List<string>();
-    foreach (AnimationClip clip in clips)
-    {
-      list.Add(clip.name);
-    }
-
-    return list;
-  }
 }
