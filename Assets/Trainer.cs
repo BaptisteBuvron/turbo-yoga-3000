@@ -64,12 +64,10 @@ public class Trainer : MonoBehaviour
             if (lastAnimation != "Null")
             {
                 StartCoroutine(ReverseAndPlayNextAnimation(nomAnimation));
-                lastAnimation = nomAnimation;
             }
             else
             {
                 StartCoroutine(PlayAnimation(nomAnimation));
-                lastAnimation = nomAnimation;
             }
         }
         else
@@ -85,6 +83,8 @@ public class Trainer : MonoBehaviour
         yield return new WaitForSecondsRealtime(getAnimationDuration(animationName) + 2);
         Debug.Log("fin animation " + animationName);
         animationMethodAlreadyCalled = false;
+        lastAnimation = animationName;
+
     }
 
     public IEnumerator ReverseAndWait()
@@ -92,7 +92,7 @@ public class Trainer : MonoBehaviour
         Debug.Log("Début reverse" + lastAnimation);
         animator.SetFloat("forward", -1);
         animator.Play(lastAnimation);
-        yield return new WaitForSeconds(getAnimationDuration(lastAnimation)+5);
+        yield return new WaitForSeconds(getAnimationDuration(lastAnimation)*2.5f);
         animator.SetFloat("forward", 1);
         Debug.Log("Fin reverse" + lastAnimation);
     }
