@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     private float callibrationTime = 0;
     private bool callibrationInstruction = true;
 
+    public PositionDetection positionDetection;
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +63,8 @@ public class GameManager : MonoBehaviour
         {
             callibrationText.text = "Succès Début de la partie";
             state = GameState.Playing;
-            
+
+            positionDetection.tailleJoueur = positionDetection.getHeadPosition().y;
 
         }
     }
