@@ -17,6 +17,7 @@ public class PositionDetection : MonoBehaviour
 
     public MonoBehaviour superText;
     public TextMeshProUGUI percentageDisplay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,16 +76,17 @@ public class PositionDetection : MonoBehaviour
 
     }
 
-    Vector3 getHeadPosition()
+    public Vector3 getHeadPosition()
     {
         return xrOrigin.Camera.transform.GetLocalPose().position;
     }
 
-    Vector3 getLeftHandPosition()
+    public Vector3 getLeftHandPosition()
     {
         return leftHand.transform.GetLocalPose().position;
     }
-    Vector3 getRightHandPosition()
+
+    public Vector3 getRightHandPosition()
     {
         return rightHand.transform.GetLocalPose().position;
     }

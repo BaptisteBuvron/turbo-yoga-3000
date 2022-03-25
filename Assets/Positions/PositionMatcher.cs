@@ -52,7 +52,7 @@ namespace Assets.Positions
             }
 
             Debug.Log("Tête : "+percentageHead+"%");
-
+             
             percentageLeftHand = (Mathf.Abs(playerLeftHandCalibrated.x - pose.leftHandPosition.x) * 100 / 9);
             percentageLeftHand += (Mathf.Abs(playerLeftHandCalibrated.y - pose.leftHandPosition.y) * 100 / 9);
             percentageLeftHand /= 2;
@@ -76,18 +76,12 @@ namespace Assets.Positions
             {
                 percentageRightHand = 0;
             }
+
             if (percentageRightHand > 100)
             {
                 percentageRightHand = 100;
             }
-
             Debug.Log("Main droite : " + percentageRightHand + "%");
-
-            
-            
-            
-
-
             percentage = percentageHead + percentageLeftHand + percentageRightHand;
             percentage /= 3;
 
