@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,11 +47,31 @@ public class Trainer : MonoBehaviour
         targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool isSecondaryButtonPressed);
         if (isPrimaryButtonPressed && !playing)
         {
-            TransitionToAnimation("BrasParDessusTete");
+            foreach (var animatorParameter in animator.parameters)
+            {
+                if (animatorParameter.type == AnimatorControllerParameterType.Bool)
+                {
+                    animator.SetBool(animatorParameter.name, false);
+                }
+            }
+
+            animator.SetBool("BrasParDessusTete", true);
+            
+            //TransitionToAnimation("BrasParDessusTete");
         }
         else if (isSecondaryButtonPressed && !playing)
         {
-            TransitionToAnimation("T-pose");
+            
+            foreach (var animatorParameter in animator.parameters)
+            {
+                if (animatorParameter.type == AnimatorControllerParameterType.Bool)
+                {
+                    animator.SetBool(animatorParameter.name, false);
+                }
+            }
+            animator.SetBool("T-pose", true);
+
+            //TransitionToAnimation("T-pose");
         }
         //Debug.Log(isPrimaryButtonPressed + "" + isSecondaryButtonPressed);
     }
@@ -125,5 +146,17 @@ public class Trainer : MonoBehaviour
 
         Debug.LogError("Animation " + nomAnimation + " not found");
         return 10;
+    }
+    
+    public List<string> getAnimationsName()
+    {
+        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        List<string> list = new List<string>();
+        foreach (AnimationClip clip in clips)
+        {
+            list.Add(clip.name);
+        }
+
+        return list;
     }
 }
