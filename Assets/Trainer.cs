@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
@@ -17,6 +18,7 @@ public class Trainer : MonoBehaviour
   void Start()
   {
     animator = GetComponent<Animator>();
+    StartCoroutine(Wait());
   }
 
   // Update is called once per frame
@@ -53,8 +55,18 @@ public class Trainer : MonoBehaviour
     }
   }
 
+  IEnumerator Wait()
+   {
+     animator.SetInteger("id", _i % 3);
+     yield return new WaitForSeconds(5);   //Wait
+     ++_i;
+     yield return Wait();
+   }
+ 
+   private int _i = 0;
   public void TransitionToAnimation(string nomAnimation)
   {
+    /*
     foreach (var animatorParameter in animator.parameters)
     {
       if (animatorParameter.type == AnimatorControllerParameterType.Bool)
@@ -62,7 +74,8 @@ public class Trainer : MonoBehaviour
         animator.SetBool(animatorParameter.name, false);
       }
     }
+    */
 
-    animator.SetBool(nomAnimation, true);
+    //animator.SetBool(nomAnimation, true);
   }
 }
