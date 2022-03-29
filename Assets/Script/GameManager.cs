@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Positions;
 using Script;
 using TMPro;
 using UnityEngine;
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
             callibrationText.text = "Succès Début de la partie";
             state = GameState.Playing;
 
-            positionDetection.tailleJoueur = positionDetection.getHeadPosition().y;
+            PositionMatcher.tailleJoueur = PositionMatcher.getHeadPosition().y;
 
         }
     }

@@ -18,7 +18,6 @@ public class PositionDetection : MonoBehaviour
     public MonoBehaviour superText;
     public TextMeshProUGUI percentageDisplay;
 
-    public float tailleJoueur;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +40,16 @@ public class PositionDetection : MonoBehaviour
         Debug.Log("Tête : " + getHeadPosition());*/
 
 
-       
+        percentageDisplay.SetText("is ok");
+
+        
+        //Position2 calibration = new Position2(new Vector2(0, 0), new Vector2(0, 0), new Vector2(0, 0));
+
+        //Debug.Log("Calibration : Tête" + calibration.headPosition + " Main gauche" + calibration.leftHandPosition + " Main droite" + calibration.rightHandPosition);
+
+        Debug.Log("Correspondance des positions : " + PositionMatcher.getPositionMatch(pose, playerPosition, 1.68f, 0.8f) + "%");
+
+        percentageDisplay.SetText(PositionMatcher.getPositionMatch(pose, playerPosition, 1.68f, 0.8f) + "% ");
 
     }
 

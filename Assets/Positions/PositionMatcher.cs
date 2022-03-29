@@ -11,6 +11,9 @@ namespace Assets.Positions
         public static  XROrigin xrOrigin;
         public static XRRayInteractor leftHand, rightHand;
 
+        public static float tailleJoueur;
+
+
         public static float getPositionMatch(Position2 pose, Position2 playerPosition, float bodyHeight, float armLength)
         {
 
@@ -118,7 +121,7 @@ namespace Assets.Positions
 
             Position2 playerPosition = new Position2(new Vector2(getHeadPosition().x, getHeadPosition().y), new Vector2(getLeftHandPosition().x, getLeftHandPosition().y), new Vector2(getRightHandPosition().x, getRightHandPosition().y));
 
-            return getPositionMatch(pose, playerPosition, 1.68f, 0.8f);
+            return getPositionMatch(pose, playerPosition, tailleJoueur, 0.8f);
         }
 
         public static Vector3 getHeadPosition()
