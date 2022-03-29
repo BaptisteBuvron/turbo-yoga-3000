@@ -1,10 +1,15 @@
 ﻿using System.Collections;
+using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Assets.Positions
 {
     public static class PositionMatcher
     {
+
+        public static  XROrigin xrOrigin;
+        public static XRRayInteractor leftHand, rightHand;
 
         public static float getPositionMatch(Position2 pose, Position2 playerPosition, float bodyHeight, float armLength)
         {
@@ -88,6 +93,48 @@ namespace Assets.Positions
             return percentage;
 
         }
-        
+
+        public static float getCurrentPercentage()
+        {
+            Position2 pose;
+
+            switch (Trainer.lastAnimation)
+            {
+                case "BrasParDessusTete":
+
+                    pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(3, 10), new Vector2(6, 10));
+                    Debug.Log("Position : Bras par dessus la tête");
+                    break;
+                case "T-pose":
+                    pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(2, 7f), new Vector2(7, 7f));
+                    Debug.Log("Position : T-Pose");
+                    break;
+                default:
+                    Debug.Log("Position : Aucune");
+                    return 0;
+                 break;
+            }
+
+
+            Position2 playerPosition = new Position2(new Vector2(getHeadPosition().x, getHeadPosition().y), new Vector2(getLeftHandPosition().x, getLeftHandPosition().y), new Vector2(getRightHandPosition().x, getRightHandPosition().y));
+
+            return getPositionMatch(pose, playerPosition, 1.68f, 0.8f);
+        }
+
+        public static Vector3 getHeadPosition()
+        {
+            return xrOrigin.Camera.transform.GetLocalPose().position;
+        }
+
+        public static Vector3 getLeftHandPosition()
+        {
+            return leftHand.transform.GetLocalPose().position;
+        }
+
+        public static Vector3 getRightHandPosition()
+        {
+            return rightHand.transform.GetLocalPose().position;
+        }
+
     }
 }
