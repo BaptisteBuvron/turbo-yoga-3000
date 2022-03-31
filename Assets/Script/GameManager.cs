@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Positions;
 using Script;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI callibrationText;
     private float callibrationTime = 0;
     private bool callibrationInstruction = true;
+    private float animationTime = 0;
 
     public PositionDetection positionDetection;
 
@@ -51,7 +53,38 @@ public class GameManager : MonoBehaviour
                     callibrationTime = 0;
                 }
                 break;
+            case GameState.Playing:
+                if (animationTime > 5)
+                {
+                    animationTime = 0;
+                    state = GameState.ChangeAnimation;
+                }
+                else if (PositionMatcher.getCurrentPercentage() > 80f)
+                {
+                    animationTime += Time.deltaTime;
+                }
+                else
+                {
+                    animationTime = 0;
+                }
+                break;
+            case GameState.ChangeAnimation :
+                callibrationText.text = "Bravo, animation suivante...";
+                Invoke("hideText", 2);
+                Invoke("nextAnimation", 2);
+                break;
         }
+    }
+
+    private void hideText()
+    {
+        callibrationText.text = "";
+    }
+
+    private void nextAnimation()
+    {
+        //TODO next animation
+        state = GameState.Playing;
     }
 
     void updateTimer()
@@ -64,11 +97,8 @@ public class GameManager : MonoBehaviour
             callibrationText.text = "Succès Début de la partie";
             state = GameState.Playing;
 
-            positionDetection.tailleJoueur = positionDetection.getHeadPosition().y;
-
+            positionDetection.tailleJoueur = PositionMatcher.getHeadPosition().y;
         }
     }
-    
-        
     
 }
