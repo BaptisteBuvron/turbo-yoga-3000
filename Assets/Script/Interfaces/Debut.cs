@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Debut : MonoBehaviour
 {
@@ -20,7 +21,14 @@ public class Debut : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    public void jouer()
+    {
+
+        Debug.Log("apppt Let's play");
+
+        SceneManager.LoadScene("demoScene_free");
     }
 
     public void creditClick()
@@ -39,6 +47,7 @@ public class Debut : MonoBehaviour
 
     public void quitter()
     {
+        Debug.Log("apppt bye bye");
         UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
