@@ -8,12 +8,11 @@ public class Trainer : MonoBehaviour
   static Animator animator;
   bool playing = false;
 
-  public static string lastAnimation = "Null";
+  public static Animations lastAnimation = Animations.Idle;
   // Start is called before the first frame update
 
   private InputDevice targetDevice;
   private bool targetFound = false;
-  private bool animationMethodAlreadyCalled = false;
 
   void Start()
   {
@@ -56,15 +55,31 @@ public class Trainer : MonoBehaviour
     }
   }
 
-  public static void playAnimation(Animations animation)
+  public static void playAnimation(Animations animationId)
   {
-    animator.SetInteger("id", ((int)animation));
+    animator.SetInteger("id", ((int)animationId));
+    lastAnimation = animationId;
+  }
+
+  private static Animations getRandomAnimation()
+  {
+    return (Animations)Random.Range(1, System.Enum.GetValues(typeof(Animations)).Length);
+  }
+
+  public static void playRandomAnimation()
+  {
+    Animations nextAnimationId;
+    do
+    {
+      nextAnimationId = getRandomAnimation();
+    } while (lastAnimation == nextAnimationId);
+    playAnimation(nextAnimationId);
   }
 }
 
 public enum Animations
 {
-  Tpose = 1,
-  BrasParDessusTete = 2,
-  Idle = 0
+  Idle = 0,
+  BrasParDessusTete = 1,
+  Tpose = 2,
 }
