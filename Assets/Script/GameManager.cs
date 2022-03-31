@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
                 if (callibrationTime == 0f)
                 {
                     callibrationText.text = "Installez-vous debout et reproduisez la position du coach et restez stable pendant 5 secondes.\n Restez sur le bouton B Gauche pour débuter la callibration.";
-                    //TODO Coach T POSE
+                    Trainer.playAnimation(Animations.Tpose);
                 }
                 ControllerManager.leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPrimaryLeftButtonPressed);
                 if (isPrimaryLeftButtonPressed )
