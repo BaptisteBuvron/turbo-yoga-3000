@@ -37,4 +37,10 @@ public class Debut : MonoBehaviour
         Debug.Log("apppt menu principal clique");
     }
 
+    public void quitter()
+    {
+        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
+    }
+
 }
