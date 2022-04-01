@@ -28,6 +28,7 @@ public class PositionDetection : MonoBehaviour
         PositionMatcher.xrOrigin = xrOrigin;
         PositionMatcher.leftHand = leftHand;
         PositionMatcher.rightHand = rightHand;
+        PositionMatcher.positionDetection = this;
 
     }
 
@@ -38,7 +39,7 @@ public class PositionDetection : MonoBehaviour
 
         /*Debug.Log("Main gauche : " + getLeftHandPosition());
         Debug.Log("Main droite : " + getRightHandPosition());
-        Debug.Log("Tête : " + getHeadPosition());*/
+        Debug.Log("Tï¿½te : " + getHeadPosition());*/
 
 
        
