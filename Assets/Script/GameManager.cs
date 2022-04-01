@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
                     animationTime = 0;
                     state = GameState.ChangeAnimation;
                 }
-                else if (PositionMatcher.getCurrentPercentage() > 80f)
+                else if (PositionMatcher.getCurrentPercentage() >= 100f)
                 {
                     animationTime += Time.deltaTime;
                 }
@@ -71,8 +71,11 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.ChangeAnimation :
                 callibrationText.text = "Bravo, animation suivante...";
+                state = GameState.ChangingAnimation;
                 Invoke("hideText", 2);
                 Invoke("nextAnimation", 2);
+                break;
+            default:
                 break;
         }
     }
@@ -85,7 +88,15 @@ public class GameManager : MonoBehaviour
     private void nextAnimation()
     {
         Trainer.playRandomAnimation();
+        callibrationText.text = "Préparez vous... Prenez une grande inspiration...";
+        Invoke("setPlayingState", 3);
+
+    }
+
+    private void setPlayingState()
+    {
         state = GameState.Playing;
+
     }
 
     void updateTimer()

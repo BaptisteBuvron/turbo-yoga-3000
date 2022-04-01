@@ -1909,7 +1909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   callibrationText: {fileID: 1610268996}
-  positionDetection: {fileID: 0}
+  positionDetection: {fileID: 634383646}
 --- !u!4 &1469808876
 Transform:
   m_ObjectHideFlags: 0
