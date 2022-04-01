@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
                         callibrationInstruction = false;
                     }
                     else
-                    {
+                    { 
                         updateTimer();
                     }
                 }
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case GameState.ChangeAnimation :
-                callibrationText.text = "Bravo, animation suivante... détente maximale...";
+                callibrationText.text = "Bravo, animation suivante... \n détente maximale...";
                 state = GameState.ChangingAnimation;
                 Invoke("hideText", 2);
                 Invoke("nextAnimation", 2);
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     private void nextAnimation()
     {
         Trainer.playRandomAnimation();
-        callibrationText.text = "Préparez vous... Prenez une grande inspiration... et détendez vous...";
+        callibrationText.text = "Préparez vous... \n Prenez une grande inspiration... \n et détendez vous...";
         Invoke("setPlayingState", 3);
 
     }
