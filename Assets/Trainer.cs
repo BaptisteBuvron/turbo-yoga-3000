@@ -21,40 +21,6 @@ public class Trainer : MonoBehaviour
   }
 
   // Update is called once per frame
-  void Update()
-  {
-    if (!targetFound)
-    {
-      List<InputDevice> devices = new List<InputDevice>();
-      InputDeviceCharacteristics requiredCharacteristics =
-          InputDeviceCharacteristics.Controller | InputDeviceCharacteristics.Right;
-      InputDevices.GetDevicesWithCharacteristics(requiredCharacteristics, devices);
-
-      if (devices.Count > 0)
-      {
-        targetDevice = devices[0];
-        Debug.Log(targetDevice.name + " found");
-        targetFound = true;
-      }
-      else
-      {
-        Debug.Log("No devices found");
-      }
-    }
-
-    targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPrimaryButtonPressed);
-    targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool isSecondaryButtonPressed);
-    if (isPrimaryButtonPressed && !playing)
-    {
-      playAnimation(Animations.Tpose);
-    }
-    else if (isSecondaryButtonPressed && !playing)
-    {
-      playAnimation(Animations.BrasParDessusTete);
-
-    }
-  }
-
   public static void playAnimation(Animations animationId)
   {
     animator.SetInteger("id", ((int)animationId));
@@ -82,7 +48,7 @@ public enum Animations
   Idle = 0,
   BrasParDessusTete = 1,
   Tpose = 2,
-  
   BrasAngle = 3,
+  BrasBas = 4,
 
 }
