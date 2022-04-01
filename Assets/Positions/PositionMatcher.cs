@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -124,8 +125,11 @@ namespace Assets.Positions
       {
           percentage = 100;
       }
-      
-      return percentage;
+      if (percentage < 0)
+      {
+          percentage = 0;
+      }
+      return (float)Math.Floor(percentage);
 
         }
 
@@ -148,7 +152,7 @@ namespace Assets.Positions
                     pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(4, 4), new Vector2(5, 10));
                     Debug.Log("Position : Bras superman");
                     break;
-                case Animations.BrasEnBas:
+                case Animations.BrasBas:
                     pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(4, 4), new Vector2(5, 4));
                     Debug.Log("Position : Bras gratte sol");
                     break;

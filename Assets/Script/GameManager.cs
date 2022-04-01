@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
             case GameState.Callibrate:
                 if (callibrationTime == 0f)
                 {
-                    callibrationText.text = "Installez-vous debout et reproduisez la position du coach et restez stable et détendu pendant 5 secondes.\n Restez sur le bouton B Gauche pour débuter la callibration.";
+                    callibrationText.text = "Installez-vous debout et reproduisez la position du coach et restez stable et détendu pendant 5 secondes.\nRestez sur le bouton B Gauche pour débuter la callibration.\nPréparez vous à une grande détente...";
                     Trainer.playAnimation(Animations.Tpose);
                 }
                 ControllerManager.leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPrimaryLeftButtonPressed);
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case GameState.Playing:
-                callibrationText.text = "Début de la partie, reproduisez la position du coach : " + PositionMatcher.getCurrentPercentage() + "%";
+                callibrationText.text = "Début de la partie, reproduisez la position du coach pendant 5 secondes : " + PositionMatcher.getCurrentPercentage() + "% \nEt surtout, détendez vous...";
                 if (animationTime > 5)
                 {
                     animationTime = 0;
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case GameState.ChangeAnimation :
-                callibrationText.text = "Bravo, animation suivante... \n détente maximale...";
+                callibrationText.text = "Bravo, animation suivante... \nDétente maximale...";
                 state = GameState.ChangingAnimation;
                 Invoke("hideText", 2);
                 Invoke("nextAnimation", 2);
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     private void nextAnimation()
     {
         Trainer.playRandomAnimation();
-        callibrationText.text = "Préparez vous... \n Prenez une grande inspiration... \n et détendez vous...";
+        callibrationText.text = "Préparez vous... \nPrenez une grande inspiration... \nEt détendez vous...";
         Invoke("setPlayingState", 3);
 
     }
@@ -107,14 +107,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("Calibration en cours, détendez vous...");
         callibrationTime += Time.deltaTime;
         callibrationText.text = "Calibration en cours, détendez vous... \n" + callibrationTime.ToString("0.00");
-        if (callibrationTime <= 2.5f)
-        {
-            positionDetection.tailleJoueur = PositionMatcher.getHeadPosition().y;
-        }
+
         if (callibrationTime >= 3)
         {
-            callibrationText.text = "Début de la partie, reproduisez la position du coach, et détendez vous...";
+            positionDetection.tailleJoueur = PositionMatcher.getHeadPosition().y;
+
+            callibrationText.text = "Reproduisez la position du coach pendant 5 secondes... \nEt détendez vous...";
             state = GameState.Playing;
+
         }
     }
     
