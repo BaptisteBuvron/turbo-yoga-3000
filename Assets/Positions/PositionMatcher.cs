@@ -32,16 +32,30 @@ namespace Assets.Positions
 
                 percentage = pose.headPosition.x * calibratedPlayerPosition.headPosition.x;
 
+<<<<<<< Updated upstream
             */
 
             float percentage, percentageHead, percentageLeftHand, percentageRightHand;
 
             Vector2 playerHeadCalibrated = new Vector2(Mathf.Abs(playerPositionNormalized.headPosition.x), Mathf.Abs(playerPositionNormalized.headPosition.y) * 9 / bodyHeight);
+=======
+      Vector2 playerHeadCalibrated = new Vector2(Mathf.Abs(playerPositionNormalized.headPosition.x), Mathf.Abs(playerPositionNormalized.headPosition.y));
+
+      Vector2 playerLeftHandCalibrated = new Vector2(Mathf.Abs(playerPositionNormalized.leftHandPosition.x), Mathf.Abs(playerPositionNormalized.leftHandPosition.y));
+
+      Vector2 playerRightHandCalibrated = new Vector2(Mathf.Abs(playerPositionNormalized.rightHandPosition.x), Mathf.Abs(playerPositionNormalized.rightHandPosition.y));
+>>>>>>> Stashed changes
 
             Vector2 playerLeftHandCalibrated = new Vector2(Mathf.Abs(playerPositionNormalized.leftHandPosition.x)*9/ armLength, Mathf.Abs(playerPositionNormalized.leftHandPosition.y)*9/armHeight);
             
             Vector2 playerRightHandCalibrated = new Vector2(Mathf.Abs(playerPositionNormalized.rightHandPosition.x)*9/ armLength, Mathf.Abs(playerPositionNormalized.rightHandPosition.y) * 9/armHeight);
 
+<<<<<<< Updated upstream
+=======
+      percentageHead = (Mathf.Abs(playerHeadCalibrated.x - pose.headPosition.x*armLength * 2 / 9));
+      percentageHead += (Mathf.Abs(playerHeadCalibrated.y - pose.headPosition.y * bodyHeight / 9));
+      percentageHead /= 2;
+>>>>>>> Stashed changes
 
             percentageHead = (Mathf.Abs(playerHeadCalibrated.x - pose.headPosition.x) * 100 / 9);
             percentageHead += (Mathf.Abs(playerHeadCalibrated.y - pose.headPosition.y) * 100 / 9);
@@ -56,11 +70,17 @@ namespace Assets.Positions
                 percentageHead = 100;
             }
 
+<<<<<<< Updated upstream
             Debug.Log("Tête : "+percentageHead+"%");
              
             percentageLeftHand = (Mathf.Abs(playerLeftHandCalibrated.x - pose.leftHandPosition.x) * 100 / 9);
             percentageLeftHand += (Mathf.Abs(playerLeftHandCalibrated.y - pose.leftHandPosition.y) * 100 / 9);
             percentageLeftHand /= 2;
+=======
+      percentageLeftHand = (Mathf.Abs(playerLeftHandCalibrated.x - pose.leftHandPosition.x * armLength*2 / 9));
+      percentageLeftHand += (Mathf.Abs(playerLeftHandCalibrated.y - pose.leftHandPosition.y * armLength * 2 / 9));
+      percentageLeftHand /= 2;
+>>>>>>> Stashed changes
 
             if (percentageLeftHand < 0)
             {
@@ -73,9 +93,15 @@ namespace Assets.Positions
 
             Debug.Log("Main gauche : " + percentageLeftHand + "%");
 
+<<<<<<< Updated upstream
             percentageRightHand = (Mathf.Abs(playerRightHandCalibrated.x - pose.rightHandPosition.x) * 100 / 9);
             percentageRightHand += (Mathf.Abs(playerRightHandCalibrated.y - pose.rightHandPosition.y) * 100 / 9);
             percentageRightHand /= 2;
+=======
+      percentageRightHand = (Mathf.Abs(playerRightHandCalibrated.x - pose.rightHandPosition.x * armLength * 2 / 9));
+      percentageRightHand += (Mathf.Abs(playerRightHandCalibrated.y - pose.rightHandPosition.y * armLength * 2 / 9));
+      percentageRightHand /= 2;
+>>>>>>> Stashed changes
 
             if (percentageRightHand < 0)
             {
