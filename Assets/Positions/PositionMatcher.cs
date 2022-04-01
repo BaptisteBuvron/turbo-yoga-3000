@@ -51,10 +51,10 @@ namespace Assets.Positions
       {
         percentageHead = 0;
       }
-      if (percentageHead > 100)
-      {
-        percentageHead = 100;
-      }
+      // if (percentageHead > 100)
+      // {
+      //   percentageHead = 100;
+      // }
 
       Debug.Log("Tête : " + percentageHead + "%");
 
@@ -66,10 +66,10 @@ namespace Assets.Positions
       {
         percentageLeftHand = 0;
       }
-      if (percentageLeftHand > 100)
-      {
-        percentageLeftHand = 100;
-      }
+      // if (percentageLeftHand > 100)
+      // {
+      //   percentageLeftHand = 100;
+      // }
 
       Debug.Log("Main gauche : " + percentageLeftHand + "%");
 
@@ -82,10 +82,10 @@ namespace Assets.Positions
         percentageRightHand = 0;
       }
 
-      if (percentageRightHand > 100)
-      {
-        percentageRightHand = 100;
-      }
+      // if (percentageRightHand > 100)
+      // {
+      //   percentageRightHand = 100;
+      // }
       Debug.Log("Main droite : " + percentageRightHand + "%");
       percentage = percentageHead + percentageLeftHand + percentageRightHand;
       percentage /= 3;

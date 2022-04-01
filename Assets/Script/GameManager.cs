@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case GameState.Playing:
+                callibrationText.text = "Succès Début de la partie, reproduisez la position du coach : " + PositionMatcher.getCurrentPercentage() + "%";
                 if (animationTime > 5)
                 {
                     animationTime = 0;
@@ -83,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     private void nextAnimation()
     {
-        //TODO next animation
+        Trainer.playRandomAnimation();
         state = GameState.Playing;
     }
 
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
         callibrationText.text = "Callibrating...\n" + callibrationTime.ToString("0.00");
         if (callibrationTime >= 3)
         {
-            callibrationText.text = "Succès Début de la partie";
+            callibrationText.text = "Succès Début de la partie, reproduisez la position du coach :";
             state = GameState.Playing;
 
             positionDetection.tailleJoueur = PositionMatcher.getHeadPosition().y;
