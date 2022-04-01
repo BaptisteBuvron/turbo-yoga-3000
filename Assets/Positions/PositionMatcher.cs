@@ -144,6 +144,10 @@ namespace Assets.Positions
                     pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(2, 7f), new Vector2(7, 7f));
                     Debug.Log("Position : T-Pose");
                     break;
+                case Animations.BrasSuperman:
+                    pose = new Position2(new Vector2(4.5f, 8.5f), new Vector2(4, 4), new Vector2(5, 10));
+                    Debug.Log("Position : Bras superman");
+                    break;
                 default:
                     Debug.Log("Position : Aucune");
                     return 0;
