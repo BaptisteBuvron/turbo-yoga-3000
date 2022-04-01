@@ -4,5 +4,6 @@ public enum GameState
     Menu,
     Callibrate,
     Playing,
-    ChangeAnimation
+    ChangeAnimation,
+    ChangingAnimation
 }

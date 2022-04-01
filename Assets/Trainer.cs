@@ -82,7 +82,5 @@ public enum Animations
   Idle = 0,
   BrasParDessusTete = 1,
   Tpose = 2,
-  
   BrasAngle = 3,
-
 }
